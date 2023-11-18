@@ -1,0 +1,147 @@
+<div class="row" >
+
+  <div class="container" style="margin: auto;" >
+
+    <nav class="page-breadcrumb" style="text-align: right;">
+        <h4 class="card-title" style="text-align: left;">Match Position</h4>
+
+        <ol class="breadcrumb justify-content-end">
+            <li class="breadcrumb-item"><a routerLink="/master-agent">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Inplay</li>
+        </ol>
+    </nav>
+    <div class="col-md-12 col-sm-12 stretch-card">
+      <div class="card">
+
+        <div class="card-header" style="text-align: center; font-weight: bold;color: gray;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;font-size: medium;">
+          <h4 >NEW ZEALAND 0-0 (0)</h4>
+          <h4 >ENGLAND 0-0 (0)</h4>
+
+        </div>
+        <div class="card-body">
+          <div class="row">
+          <div class="table-responsive col-md-6 col-sm-12">
+        <table class="table table-bordered table-hover ">
+          <thead>
+          <tr>
+            <th>Team</th>
+            <th>KHAI</th>
+            <th>LAGAI</th>
+            <th>PLUS/MINUS</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let row of teamDetails">
+
+            <td>{{ row.Team }}</td>
+            <td>{{ row.Khai }}</td>
+            <td>{{ row.Lagai }}</td>
+            <td>{{ row.plusMinus }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+          </tfoot>
+        </table>
+    </div>
+    <div class="table-responsive col-md-6 col-sm-12">
+
+        <table class="table table-bordered table-hover col-md-12 col-sm-12">
+          <thead>
+          <tr>
+            <th>Session</th>
+            <th style="color: red;">NOT</th>
+            <th style="color: #008000;">YES</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let sport of sportDetails;index as i">
+
+            <td>{{ sport.SINo }}</td>
+            <td>{{ sport.code }}</td>
+            <td>{{ sport.name }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </tfoot>
+      </table>
+      </div>
+
+      <div class="table-responsive col-md-12 col-sm-12" style="margin-top: 20px;">
+
+        <table class="table table-bordered table-hover ">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Rate</th>
+            <th>Amount</th>
+            <th>Mode</th>
+            <th>Team</th>
+            <th>Client</th>
+            <th>England</th>
+            <th>NEW ZEALAND</th>
+
+
+
+            <th style="color: red;">Date & Time</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let sport of sportDetails;index as i">
+
+            <td>{{ sport.SINo }}</td>
+            <td>{{ sport.code }}</td>
+            <td>{{ sport.name }}</td>
+            <td>{{ sport.SINo }}</td>
+            <td>{{ sport.code }}</td>
+            <td>{{ sport.name }}</td>
+            <td>{{ sport.SINo }}</td>
+            <td>{{ sport.code }}</td>
+            <td>{{ sport.name }}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+
+          </tr>
+        </tfoot>
+      </table>
+      </div>
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <div class="right">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    </div>

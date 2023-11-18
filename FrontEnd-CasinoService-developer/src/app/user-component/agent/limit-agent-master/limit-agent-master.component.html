@@ -1,0 +1,104 @@
+<div class="row" >
+  <nav class="page-breadcrumb" style="text-align: right;">
+    <h6 class="card-title" style="text-align: left;">Reports</h6>
+</nav>
+  <div class="col-md-12 stretch-card">
+
+    <div class="card">
+
+      <div class="card-header" style="background-color: gray; color: white;">
+
+        <h1 class="card-title" style="font-size: 24px;"> Agent Coin Details</h1>
+
+        </div>
+
+      <div class="card-body">
+        <div class="row align-items-center" style="margin: 10px;">
+          <div class="col-md-6">
+            <div class="mb-3">
+            <!-- Item per page dropdown -->
+            <div class="items-per-page-dropdown">
+              <label for="itemsPerPageSelect">Show</label>
+              <select id="itemsPerPageSelect" class="form-control" style="width: 50px; display: inline-block;" [(ngModel)]="itemsPerPage" (ngModelChange)="updatePage($event)">
+                <option *ngFor="let option of pageSizeOptions" [ngValue]="option">{{ option }}</option>
+              </select>
+              <label for="itemsPerPageSelect">Entire</label>
+            </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <!-- Search input -->
+            <div class="mb-3">
+              <div class="input-group justify-content-end">
+                <label for="itemsPerPageSelect" style="margin: 10px;">Search:</label>
+                <input type="text" class="form-control" style="max-width: 200px;" placeholder="Search...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Super Table -->
+        <div class="table-responsive" >
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr style="background-color: rgb(101, 226, 43); ">
+              <th>SNo</th>
+              <th>Agent Name</th>
+              <th>Limit</th>
+              <th>Enter Limit</th>
+              <th>My Limit:1071.08</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr *ngFor="let limit of agentLimit.data.content">
+              <td>{{limit.id}}</td>
+              <td>{{limit.code+' '}}{{limit.name}}</td>
+              <td>{{limit.currentLimit}}</td>
+              <td>
+                <input class="form-control" [(ngModel)]="inputNumbers[limit.id]" type="number"  required />
+                <div *ngIf="inputErrors[limit.id]" style="color:red"> Please fill out this field.</div>
+              <td>
+                <button class="btn btn-primary" type="button" style="margin-right: 10px;" (click)="updateLimit(limit.id,1)">Add</button>
+                <button class="btn btn-danger" type="button"(click)="updateLimit(limit.id,-1)">Minus</button>
+              </td>
+             </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <!-- <th></th> -->
+              <!-- <th></th>
+              <th></th> -->
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-end">
+          <div class="right">
+            <ngb-pagination
+              [collectionSize]="agentLimit?.data?.totalElements"
+              [(page)]="agentLimit.data.totalPages"
+              [pageSize]="agentLimit?.data?.size">
+            </ngb-pagination>
+          </div>
+
+        </div>
+        <!-- <div class="row">
+<div class="col-6"></div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

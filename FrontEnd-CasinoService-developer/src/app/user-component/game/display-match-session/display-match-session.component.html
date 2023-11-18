@@ -1,0 +1,139 @@
+<div class="row" >
+
+  <div class="container" style="margin: auto;" >
+
+    <nav class="page-breadcrumb" style="text-align: right;">
+        <h4 class="card-title" style="text-align: left;">Match & Session Bet Details MatchCode:{{id}}</h4>
+
+        <ol class="breadcrumb justify-content-end">
+            <li class="breadcrumb-item"><a routerLink="/master-agent">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Match & Session Plus Bet Details</li>
+        </ol>
+    </nav>
+    <div class="col-md-12 col-sm-12 stretch-card">
+      <div class="card">
+
+        <div class="card-header row">
+          <div class="col-md-4 col-sm-6">
+            <label for="itemsPerPageSelect">Client</label>
+            <div class="items-per-page-dropdown">
+              <select id="itemsPerPageSelect" class="form-control" style="width: 200px ;display: inline-block;" >
+                <!-- [(ngModel)]="itemsPerPage" (ngModelChange)="updatePage()" -->
+                <!-- *ngFor="let option of pageSizeOptions" [ngValue]="option" -->
+                <option >a</option>
+                <option >b</option>
+                <option >c</option>
+
+              </select>
+
+              <button type="button" class="btn btn-success" style="margin: 5px; " >
+                Submit
+              </button>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-2">
+
+          </div>
+
+
+        </div>
+        <div class="card-body">
+          <div class="row">
+
+            <div class="table-responsive col-md-6 col-sm-12">
+            <div class="card-header" style="background-color: #6c757d!important; color: white; font-size: .875rem; text-align: center;">
+              <h2>MATCH BETS</h2>
+            </div>
+        <table class="table table-bordered table-hover ">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Rate</th>
+              <th>Mode</th>
+              <th>Team</th>
+              <th>Amount</th>
+              <th>England</th>
+              <th>NewZeland</th>
+              <th>Date & Time</th>
+
+              </tr>
+            </thead>
+          <tbody>
+              <tr >
+                <td></td>
+                <td></td>
+                <td></td>
+
+                <!-- *ngFor="let row of teamDetails" -->
+                <td> Minus </td>
+                <td style="color: red;"> 0 </td>
+                <td style="color: red;"> 0 </td>
+                <td style="color: red;"> 0 </td>
+                <td> </td>
+
+                </tr>
+          <!-- <tr *ngFor="let row of teamDetails">
+
+            <td>{{ row.Team }}</td>
+            <td>{{ row.Khai }}</td>
+
+            </tr> -->
+          </tbody>
+          <tfoot>
+          <tr>
+            <th></th>
+            <th></th>
+
+          </tr>
+          </tfoot>
+        </table>
+    </div>
+    <div class="table-responsive col-md-6 col-sm-12">
+      <div class="card-header" style="background-color: #6c757d!important; color: white; font-size: .875rem; text-align: center;">
+        <h2>SESSION BETS</h2>
+      </div>
+      <table class="table table-bordered table-hover ">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Session</th>
+          <th>Rate</th>
+          <th>Run</th>
+          <th>Mode</th>
+          <th>Amount</th>
+          <th>Dec</th>
+          <th>Date & Time</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+        <tr >
+          <td>Session Plus</td>
+          <td>0</td>
+
+          </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+
+        </tr>
+        </tfoot>
+      </table>
+  </div>
+
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <div class="right">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+    </div>

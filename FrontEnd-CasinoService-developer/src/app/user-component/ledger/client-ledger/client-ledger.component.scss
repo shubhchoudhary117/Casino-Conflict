@@ -1,0 +1,15 @@
+.page-breadcrumb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left; /* Adjust text alignment as needed */
+}
+
+.card-title {
+  margin: 0; /* Remove default margin to align with ol */
+}
+
+.breadcrumb-wrapper {
+  flex-grow: 1; /* Allow ol to take up remaining space */
+  text-align: right;
+}

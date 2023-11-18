@@ -1,0 +1,235 @@
+<div class="row">
+  <nav class="page-breadcrumb" style="text-align: right;">
+    <h6 class="card-title" style="text-align: left;">Cash Transaction</h6>
+
+    <!-- <ol class="breadcrumb justify-content-end">
+        <li class="breadcrumb-item"><a routerLink="/master-agent">Master-Agent</a></li>
+        <li class="breadcrumb-item active" aria-current="page">New Master</li>
+    </ol> -->
+</nav>
+  <div class="col-md-12 stretch-card">
+
+    <div class="card">
+
+      <div class="card-header" style="background-color: gray; color: white;">
+
+        <!-- <h4 class="card-title" *ngIf="currentMaster==true">Master Ledger</h4>
+        <h4 class="card-title" *ngIf="currentSuper==true">Super Ledger</h4> -->
+        <h4 class="card-title" *ngIf="currentProvider==true">Provider Ledger</h4>
+        <h4 class="card-title" *ngIf="currentClient==true">Client Ledger</h4>
+        <div class="row">
+            <!-- <div class="col-2" *ngIf="currentMaster==true">
+              <div class="mb-3" >
+                <label class="form-label">Master</label>
+
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Master</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+            </div> -->
+            <!-- <div class="col-2" *ngIf="currentSuper==true">
+              <div class="mb-3" >
+                <label class="form-label">Super</label>
+
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Super</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+            </div> -->
+            <div class="col-2" *ngIf="currentProvider==true">
+              <div class="mb-3" >
+                <label class="form-label">Provider</label>
+
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Provider</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-2" *ngIf="currentClient==true">
+              <div class="mb-3" >
+                <label class="form-label">Client</label>
+
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Client</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+            </div><!-- Col -->
+            <div class="col-2">
+              <div class="mb-3">
+                <label class="form-label">Collection</label>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+            </div><!-- Col -->
+            <div class="col-2">
+              <div class="mb-3">
+                <label class="form-label">Amount</label>
+                <div class="mb-3">
+                  <input type="number" class="form-control" placeholder="Amount">
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="mb-3">
+                <label class="form-label">Payment Type</label>
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Open this select menu</option>
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="mb-3">
+                <label class="form-label">Remark</label>
+                <div class="mb-3">
+                  <input type="text" class="form-control" placeholder="Remark">
+                </div>
+              </div>
+            </div>
+            <div class="col-2">
+              <div class="mb-3">
+                <label class="form-label"></label>
+                 <button class="btn btn-success" style="margin-top: 30px;" >Submit</button>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- <ul><li [class.active]="isLinkActive('/master-agent')">
+
+        </li></ul> -->
+        <!-- <button type="button" class="btn btn-primary btn-icon-text" style="margin: 5px;"
+        routerLink="/master-agent/add-master"> ADD <i class="btn-icon-append" data-feather="box"></i></button>
+        <button type="button" class="btn btn-success" style="margin: 5px;" routerLink="/master-agent/modify-master">All
+          Active
+        </button>
+        <button type="button" class="btn btn-danger" style="margin: 5px;">All DeActive</button>
+        <button type="button" class="btn btn-dark" style="margin: 5px;" routerLink="/master-agent/limit-master">
+          Limit Update
+        </button> -->
+      <!-- </div> -->
+      <div class="card-body">
+
+        <div class="table-responsive">
+          <!-- id="dataTableExample" -->
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr style="background-color: rgb(101, 226, 43); ">
+              <!-- <th><input type="checkbox"></th> -->
+              <th>#</th>
+              <th>Date</th>
+              <th>Collection Name</th>
+              <th>Debit</th>
+              <th>Credit</th>
+              <th>Balance</th>
+              <th>Payment Type</th>
+              <th>Remark</th>
+              <!-- <th>IC Share</th>
+              <th>Mobile Share</th>
+              <th>MC</th>
+              <th>SC</th>
+              <th>CC</th>
+              <th>Status</th> -->
+            </tr>
+            <tr>
+            <th></th>
+            <th></th>
+            <th style="color: red;">Total Amount</th>
+            <th>152,019.00</th>
+            <th>152,019.00</th>
+            <th>-7,415.00</th>
+            <th></th>
+            <th></th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr >
+              <!-- *ngFor="let row of data?.data?.content;index as i" -->
+              <td>
+                <!-- <div class="dropdown">
+                  <div ngbDropdown> -->
+                  <!-- {{(i+1) + (data.data.number *25)}} -->
+                    <!-- <button class="btn btn-link btn-sm" id="dropdownButtonLg" ngbDropdownToggle></button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button ngbDropdownItem (click)="getSingleId(row.id)">Edit</button>
+                      <button ngbDropdownItem>Another Action</button>
+                      <button ngbDropdownItem>Something else is here</button>
+                    </div>
+                  </div></div> -->
+              </td>
+              <td>name</td>
+              <td>ds</td>
+              <td>das</td>
+              <td>dfgd</td>
+              <td>actNo}}</td>
+              <td>entLimit}}</td>
+              <td>e}}</td>
+              <!-- <td>re}}</td> -->
+              <!-- <td> -->
+                <!-- <span class="badge"
+                      [ngClass]="row.status ? 'bg-success':'bg-danger'">us ? 'Active' : 'Inactive' }}</span>
+              </td> -->
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+
+              <!-- <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th> -->
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-end">
+          <div class="right">
+            <ngb-pagination
+              [collectionSize]="totalItems"
+              [(page)]="currentPage"
+              [pageSize]="itemsPerPage">
+            </ngb-pagination>
+          </div>
+
+        </div>
+        <!-- <div class="row">
+<div class="col-6"></div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

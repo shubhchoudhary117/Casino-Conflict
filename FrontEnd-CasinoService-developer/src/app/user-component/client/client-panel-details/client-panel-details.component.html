@@ -1,0 +1,111 @@
+<div class="row">
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="d-flex justify-content-center align-items-center" style="height: 100vh;" *ngIf="isBodyLoading == true">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <div class="card-header" *ngIf="isBodyLoading == false">
+
+        <h1 class="card-title">Client Panel Details</h1>
+        <!-- <ul><li [class.active]="isLinkActive('/master-agent')">
+
+        </li></ul> -->
+        <button type="button" class="btn btn-primary btn-icon-text" style="margin: 5px;" *ngIf="currentUserRole === UserRole" routerLink="/client-panel/add-client-panel"> ADD <i class="btn-icon-append" data-feather="box"></i></button>
+
+<button type="button" class="btn btn-success" style="margin: 5px;" routerLink="/master-agent/modify-master">All
+  Active
+</button>
+<button type="button" class="btn btn-danger" style="margin: 5px;">All DeActive</button>
+<button type="button" class="btn btn-dark" style="margin: 5px;"  *ngIf="currentUserRole === UserRole" routerLink="/agent/limit-agent">
+  Limit Update
+</button>
+      </div>
+      <div class="card-body" *ngIf="isBodyLoading == false">
+        <div class="table-responsive">
+          <!-- id="dataTableExample" -->
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr>
+              <th><input type="checkbox"></th>
+              <th>code</th>
+              <th>Name</th>
+              <th>Reference</th>
+              <th>Password</th>
+              <th>Contact No</th>
+              <!-- <th>Current Limit</th> -->
+              <th>Share</th>
+              <!-- <th>Casino Share</th>
+              <th>IC Share</th>
+              <th>Mobile Share</th>
+              <th>MC</th>
+              <th>SC</th>
+              <th>CC</th> -->
+              <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr *ngFor="let row of data?.data?.content;index as i">
+              <td>
+                <div class="dropdown">
+                  <div ngbDropdown>
+                  {{(i+1) + (data.data.number *25)}}
+                    <button class="btn btn-link btn-sm" id="dropdownButtonLg" ngbDropdownToggle></button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button ngbDropdownItem (click)="getSingleId(row._id)">Edit</button>
+                      <button ngbDropdownItem>Another Action</button>
+                      <button ngbDropdownItem>Something else is here</button>
+                    </div>
+                  </div></div>
+              </td>
+              <td>{{row.code}}</td>
+              <td>{{row.name}}</td>
+              <td>{{row.reference}}</td>
+              <td>{{row.password}}</td>
+              <td>{{row.contactNo}}</td>
+              <!-- <td>{{row.currentLimit}}</td> -->
+              <td>{{row.share}}</td>
+              <!-- <td>{{row.cshare}}</td>
+              <td>{{row.icShare}}</td>
+              <td>{{row.mobileShare}}</td>
+              <td>{{row.mc}}</td>
+              <td>{{row.mc}}</td>
+              <td>{{row.cc}}</td> -->
+              <td>
+                <span class="badge"
+                      [ngClass]="row.status ? 'bg-success':'bg-danger'">{{row.status ? 'Active' : 'Inactive' }}</span>
+              </td>
+            </tr>
+            <tr *ngIf="serverError !== (null||'')">
+              <td colspan="8" style="text-align: center; font-family: Arial, Helvetica, sans-serif;font-weight: bold;font-size: medium;">{{serverError}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+
+      </div>
+      <div class="card-footer" *ngIf="isBodyLoading == false">
+        <div class="right">
+          <ngb-pagination [collectionSize]="data?.data?.totalElements" [pageSize]="data?.data?.size"
+                          [page]="(data?.data?.number+1)" [maxSize]="data?.data?.totalPages" [rotate]="true"
+                          (pageChange)="loadClientData($event)" [boundaryLinks]="false"></ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-toasts [toasts]="toastService.toasts"></app-toasts>

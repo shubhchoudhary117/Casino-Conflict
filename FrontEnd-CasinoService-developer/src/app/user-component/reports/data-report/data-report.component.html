@@ -1,0 +1,354 @@
+<div class="row" >
+  <nav class="page-breadcrumb" style="text-align: right;">
+    <h6 class="card-title" style="text-align: left;">Reports</h6>
+
+    <!-- <ol class="breadcrumb justify-content-end">
+        <li class="breadcrumb-item"><a routerLink="/master-agent">Master-Agent</a></li>
+        <li class="breadcrumb-item active" aria-current="page">New Master</li>
+    </ol> -->
+</nav>
+  <div class="col-md-12 stretch-card">
+
+    <div class="card">
+
+      <div class="card-header" style="background-color: gray; color: white;">
+
+        <h4 class="card-title" *ngIf="currentMaster == true">Master Reports</h4>
+        <h4 class="card-title" *ngIf="currentSuper == true">Super Reports</h4>
+        <h4 class="card-title" *ngIf="currentAgent == true">Agent Reports</h4>
+        <h4 class="card-title" *ngIf="currentClient == true">Client Reports</h4>
+
+        <form [formGroup]="MasterForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-3 col-sm-12" *ngIf="currentMaster ==true">
+          <div class="mb-3">
+            <label class="form-label">Master</label>
+            <select class="form-select" aria-label="Default select example" formControlName="user">
+              <!-- <option value="All Master Agent">All Master Agent</option>
+              <option value="BBC India">BBC India</option>
+              <option value="SUB">SUB</option> -->
+              <option *ngFor="let row of allDataUser" [value]="row.id">{{row.id+' '}} {{row.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12" *ngIf="currentSuper == true">
+          <div class="mb-3">
+            <label class="form-label">Super</label>
+            <select class="form-select" aria-label="Default select example" formControlName="user">
+              <!-- <option value="All Master Agent">All Master Agent</option>
+              <option value="BBC India">BBC India</option>
+              <option value="SUB">SUB</option> -->
+              <option *ngFor="let row of allDataUser" [value]="row.id">{{row.id+' '}} {{row.name}}</option>
+              <!-- <option *ngFor="let reportType of reportTypesData" [value]="reportType">{{reportType}}</option> -->
+              <!-- <option >One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option> -->
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12" *ngIf="currentAgent == true">
+          <div class="mb-3">
+            <label class="form-label">Agent</label>
+            <select class="form-select" aria-label="Default select example" formControlName="user">
+              <!-- <option value="All Master Agent">All Master Agent</option>
+              <option value="BBC India">BBC India</option>
+              <option value="SUB">SUB</option> -->
+              <option *ngFor="let row of allDataUser" [value]="row.id">{{row.id+' '}} {{row.name}}</option>
+
+              <!-- <option *ngFor="let reportType of reportTypesData" [value]="reportType">{{reportType}}</option> -->
+              <!-- <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option> -->
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-12" *ngIf="currentClient == true">
+          <div class="mb-3">
+            <label class="form-label">Client</label>
+            <select class="form-select" aria-label="Default select example" formControlName="user">
+              <option *ngFor="let row of allDataUser" [value]="row.id">{{row.id+' '}} {{row.name}}</option>
+                            <!-- <option value="BBC India">BBC India</option>
+              <option value="SUB">SUB</option> -->
+              <!-- <option *ngFor="let reportType of reportTypesData" [value]="reportType">{{reportType}}</option> -->
+              <!-- <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option> -->
+            </select>
+          </div>
+        </div>
+            <div class="col-md-3 col-sm-12">
+              <div class="mb-3">
+                <label class="form-label">Report Type</label>
+                <select class="form-select" aria-label="Default select example" formControlName="reportType">
+                  <option value="All" selected>All</option>
+                  <option *ngFor="let reportType of reportTypesData" [value]="reportType">{{reportType}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2 col-sm-12">
+              <div class="mb-3">
+                <label class="form-label">Date From</label>
+                <div class="mb-3">
+                  <div class="input-group">
+                    <input class="form-control" type="date" placeholder="yyyy-mm-dd" [value]="currentDateFrom"
+                      formControlName="dateFrom" >
+                      <!-- <input class="form-control" placeholder="yyyy-mm-dd" (dateSelect)="onDateSelectedFrom($event)"
+                      name="dp" [ngModel]="selectedDate" ngbDatepicker #e="ngbDatepicker">
+                  <button class="input-group-text" type="button" (click)="e.toggle()">
+                    <i class="feather icon-calendar icon-md text-muted"></i>
+                  </button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2 col-sm-12">
+              <div class="mb-3">
+                <label class="form-label">Date To</label>
+                <div class="mb-3">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                       formControlName="dateTo" type="date" [value]="currentDateTo" >
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-2 ">
+              <div class="mb-3">
+                <label class="form-label"></label>
+                 <button class="btn btn-success" style="margin-top: 30px;" >Submit</button>
+                </div>
+            </div>
+          </div>
+        </form>
+        </div>
+
+      <div class="card-body">
+        <div class="row align-items-center" style="margin: 10px;">
+          <div class="col-md-6">
+            <div class="mb-3">
+            <!-- Item per page dropdown -->
+            <div class="items-per-page-dropdown">
+              <label for="itemsPerPageSelect">Show</label>
+              <select id="itemsPerPageSelect" class="form-control" style="width: 50px; display: inline-block;" [(ngModel)]="itemsPerPage" (ngModelChange)="onPageChange($event)">
+                <option *ngFor="let option of pageSizeOptions" [ngValue]="option">{{ option }}</option>
+              </select>
+              <label for="itemsPerPageSelect">Entire</label>
+            </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <!-- Search input -->
+            <div class="mb-3">
+              <div class="input-group justify-content-end">
+                <label for="itemsPerPageSelect" style="margin: 10px;">Search:</label>
+                <input type="text" class="form-control" style="max-width: 200px;" placeholder="Search...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Master Table -->
+        <div class="table-responsive" *ngIf="currentMaster == true">
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr style="background-color: rgb(101, 226, 43); ">
+              <th>#</th>
+              <th>Master</th>
+              <th>Type</th>
+              <th>Old</th>
+              <th>New</th>
+              <th>User</th>
+              <th>Date</th>
+              <th>IP</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="AllMSACData !== null">
+            <tr *ngFor="let data of AllMSACData?.data?.content;index as i">
+              <td>{{i+1}}</td>
+              <td>{{data.code}} {{data.name}}</td>
+              <td>{{data.reportType}}</td>
+              <td>{{data.oldValue}}</td>
+              <td>{{data.newValue}}</td>
+              <td>{{data.code}}</td>
+              <td>{{data.dateTime}}</td>
+              <td>{{data.ipAddress}}</td>
+
+             </tr>
+             <tr *ngIf="AllMSACData == null">
+               <td>
+                 <p>No Data Available in Table</p>
+               </td>
+             </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- Super Table -->
+        <div class="table-responsive" *ngIf="currentSuper == true">
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr style="background-color: rgb(101, 226, 43); ">
+              <th>#</th>
+              <th>Super</th>
+              <th>Type</th>
+              <th>Old</th>
+              <th>New</th>
+              <th>User</th>
+              <th>Date</th>
+              <th>IP</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="AllMSACData !== null">
+
+            <tr *ngFor="let data of AllMSACData?.data?.content;index as i">
+
+              <td>{{i+1}}</td>
+              <td>{{data.code}} {{data.name}}</td>
+              <td>{{data.reportType}}</td>
+              <td>{{data.oldValue}}</td>
+              <td>{{data.newValue}}</td>
+              <td>{{data.code}}</td>
+              <td>{{data.dateTime}}</td>
+              <td>{{data.ipAddress}}</td>
+             </tr>
+             <tr *ngIf="AllMSACData == null">
+              <td>
+                <p>No Data Available in Table</p>
+              </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- Agent Table -->
+        <div class="table-responsive" *ngIf="currentAgent == true">
+          <table class="table table-bordered table-hover " >
+            <thead>
+            <tr style="background-color: rgb(101, 226, 43); ">
+              <th>#</th>
+              <th>Agent</th>
+              <th>Type</th>
+              <th>Old</th>
+              <th>New</th>
+              <th>User</th>
+              <th>Date</th>
+              <th>IP</th>
+            </tr>
+            </thead>
+            <tbody  *ngIf="AllMSACData !== null">
+
+            <tr *ngFor="let data of AllMSACData?.data?.content;index as i">
+              <td>{{i+1}}</td>
+              <td>{{data.code}} {{data.name}}</td>
+              <td>{{data.reportType}}</td>
+              <td>{{data.oldValue}}</td>
+              <td>{{data.newValue}}</td>
+              <td>{{data.code}}</td>
+              <td>{{data.dateTime}}</td>
+              <td>{{data.ipAddress}}</td>
+             </tr>
+             <tr *ngIf="AllMSACData == null">
+              <td>
+                <p>No Data Available in Table</p>
+              </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+              <!-- Client Table -->
+              <div class="table-responsive" *ngIf="currentClient == true">
+                <table class="table table-bordered table-hover ">
+                  <thead>
+                  <tr style="background-color: rgb(101, 226, 43); ">
+                    <th>#</th>
+                    <th>Client</th>
+                    <th>Type</th>
+                    <th>Old</th>
+                    <th>New</th>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>IP</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngIf="AllMSACData !== null">
+
+                    <tr *ngFor="let data of AllMSACData?.data.content;index as i">
+                      <td>{{i+1}}</td>
+                      <td>{{data.code}} {{data.name}}</td>
+                      <td>{{data.reportType}}</td>
+                      <td>{{data.oldValue}}</td>
+                      <td>{{data.newValue}}</td>
+                      <td>{{data.code}}</td>
+                      <td>{{data.dateTime}}</td>
+                      <td>{{data.ipAddress}}</td>
+                     </tr>
+                     <tr *ngIf="AllMSACData == null || AllMSACData == undefined">
+                      <td colspan="8" style="text-align: center;">
+                        <p>No Data Available in Table</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-end">
+          <div class="right">
+            <ngb-pagination
+              [collectionSize]="AllMSACData?.data.totalElements"
+              [(page)]="currentPage"
+               [pageSize]="AllMSACData?.data.size">
+            </ngb-pagination>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

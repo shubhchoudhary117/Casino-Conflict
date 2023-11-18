@@ -1,0 +1,109 @@
+
+  <nav class="page-breadcrumb" style="text-align: right;">
+      <h4 class="card-title" style="text-align: left;">Casino Details</h4>
+
+      <ol class="breadcrumb justify-content-end">
+          <li class="breadcrumb-item"><a routerLink="/master-agent">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Casino Live Position</li>
+      </ol>
+  </nav>
+<div class="col-md-12 stretch-card">
+  <div class="card">
+    <div class="card-header">
+      <button type="button" class="btn btn-primary" style="margin: 5px;">Casino Bet Report</button>
+    </div>
+<div class="card-body">
+  <div class="row align-items-center" style="margin: 10px;">
+    <div class="col-md-6">
+      <div class="mb-3">
+      <!-- Item per page dropdown -->
+      <div class="items-per-page-dropdown">
+        <label for="itemsPerPageSelect">Show</label>
+        <select id="itemsPerPageSelect" class="form-control" style="width: 50px; display: inline-block;" [(ngModel)]="itemsPerPage" (ngModelChange)="updatePage()">
+          <option *ngFor="let option of pageSizeOptions" [ngValue]="option">{{ option }}</option>
+        </select>
+        <label for="itemsPerPageSelect">Entire</label>
+      </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <!-- Search input -->
+      <div class="mb-3">
+        <div class="input-group justify-content-end">
+          <label for="itemsPerPageSelect" style="margin: 10px;">Search:</label>
+          <input type="text" class="form-control" style="max-width: 200px;" placeholder="Search...">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Master Table -->
+  <div class="table-responsive" >
+    <!-- *ngIf="currentMaster == true" -->
+    <table class="table table-bordered table-hover ">
+      <thead>
+      <tr style="background-color: rgb(101, 226, 43); ">
+        <th>#</th>
+        <th>SNo</th>
+        <th>Date Time</th>
+        <th>Game Type</th>
+        <th>Plus Minus</th>
+
+      </tr>
+      </thead>
+      <tbody >
+        <!-- *ngIf="masterData !== []" -->
+        <!-- *ngFor="let data of masterData;index as i" -->
+        <tr  *ngFor="let data of ledgerData;index as i">
+        <td>
+          <div class="dropdown">
+            <div ngbDropdown>
+              <button class="btn btn-link btn-sm" id="dropdownButtonLg" ngbDropdownToggle style="background-color: burlywood;"></button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem (click)="showDetails(1)">Show Details</button>
+
+              </div>
+            </div>
+          </div>
+        </td>
+        <td>{{data.SNo}}</td>
+        <td>{{data.dateTime}}</td>
+        <td>{{data.gameType}}</td>
+        <td>{{data.plusMinus}}</td>
+
+
+       </tr>
+       <!-- <tr *ngIf="masterData == []">
+         <td>
+           <p>No Data Available in Table</p>
+         </td>
+       </tr> -->
+      </tbody>
+      <tfoot>
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <!-- <th></th>
+        <th></th>
+        <th></th> -->
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+</div>
+<div class="card-footer">
+  <div class="d-flex justify-content-end">
+    <div class="right">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="currentPage"
+        [pageSize]="itemsPerPage">
+      </ngb-pagination>
+    </div>
+
+  </div>
+</div>
+</div></div>

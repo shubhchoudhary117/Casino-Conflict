@@ -1,0 +1,313 @@
+<div class="row">
+  <nav class="page-breadcrumb" style="text-align: right;">
+    <h6 class="card-title" style="text-align: left;">Reports</h6>
+
+    <!-- <ol class="breadcrumb justify-content-end">
+        <li class="breadcrumb-item"><a routerLink="/master-agent">Master-Agent</a></li>
+        <li class="breadcrumb-item active" aria-current="page">New Master</li>
+    </ol> -->
+</nav>
+  <div class="col-md-12 stretch-card">
+
+    <div class="card">
+
+      <div class="card-header" style="background-color: gray; color: white;">
+
+        <h4 class="card-title" *ngIf="currentMaster ==true">Master Login</h4>
+        <h4 class="card-title" *ngIf="currentSuper ==true">Super Login</h4>
+        <h4 class="card-title" *ngIf="currentAgent ==true">Agent Login</h4>
+        <h4 class="card-title" *ngIf="currentClient ==true">Client Login</h4>
+
+        <div class="row">
+          <div class="col-3" *ngIf="currentMaster ==true">
+            <div class="mb-3">
+              <label class="form-label">Master</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>master</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-3" *ngIf="currentSuper ==true">
+            <div class="mb-3">
+              <label class="form-label">Super</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Super</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-3" *ngIf="currentAgent ==true">
+            <div class="mb-3">
+              <label class="form-label">Agent</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Agent</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-3" *ngIf="currentClient ==true">
+            <div class="mb-3">
+              <label class="form-label">client</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Client</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+          </div>
+
+            <div class="col-3">
+              <div class="mb-3">
+                <label class="form-label">Date From</label>
+                <div class="mb-3">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="dp" [(ngModel)]="selectedDate" ngbDatepicker #d="ngbDatepicker">
+                    <button class="input-group-text" type="button" (click)="d.toggle()">
+                      <i class="feather icon-calendar icon-md text-muted"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label class="form-label">Date To</label>
+                <div class="mb-3">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd"
+                        name="dp" [(ngModel)]="selectedDate" ngbDatepicker #d="ngbDatepicker">
+                    <button class="input-group-text" type="button" (click)="d.toggle()">
+                      <i class="feather icon-calendar icon-md text-muted"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3">
+                <label class="form-label"></label>
+                 <button class="btn btn-success" style="margin-top: 30px;" >Submit</button>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- <ul><li [class.active]="isLinkActive('/master-agent')">
+
+        </li></ul> -->
+        <!-- <button type="button" class="btn btn-primary btn-icon-text" style="margin: 5px;"
+        routerLink="/master-agent/add-master"> ADD <i class="btn-icon-append" data-feather="box"></i></button>
+        <button type="button" class="btn btn-success" style="margin: 5px;" routerLink="/master-agent/modify-master">All
+          Active
+        </button>
+        <button type="button" class="btn btn-danger" style="margin: 5px;">All DeActive</button>
+        <button type="button" class="btn btn-dark" style="margin: 5px;" routerLink="/master-agent/limit-master">
+          Limit Update
+        </button> -->
+      <!-- </div> -->
+      <div class="card-body">
+        <div class="row align-items-center" style="margin: 10px;">
+          <div class="col-md-6">
+            <div class="mb-3">
+            <!-- Item per page dropdown -->
+            <div class="items-per-page-dropdown">
+              <label for="itemsPerPageSelect">Show</label>
+              <select id="itemsPerPageSelect" class="form-control" style="width: 50px; display: inline-block;" [(ngModel)]="itemsPerPage" (ngModelChange)="updatePage()">
+                <option *ngFor="let option of pageSizeOptions" [ngValue]="option">{{ option }}</option>
+              </select>
+              <label for="itemsPerPageSelect">Entire</label>
+            </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <!-- Search input -->
+            <div class="mb-3">
+              <div class="input-group justify-content-end">
+                <label for="itemsPerPageSelect" style="margin: 10px;">Search:</label>
+                <input type="text" class="form-control" style="max-width: 200px;" placeholder="Search...">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive" *ngIf="currentMaster == true">
+          <!-- id="dataTableExample" -->
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr style="background-color: rgb(101, 226, 43); ">
+              <!-- <th><input type="checkbox"></th> -->
+              <th>#</th>
+              <th>Code</th>
+              <th>Login Name</th>
+              <th>IP Address</th>
+              <th>Date Time</th>
+              <th>Last Activity</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr >
+              <td>name</td>
+              <td>ds</td>
+              <td>das</td>
+              <td>dfgd</td>
+              <td>actNo}}</td>
+              <td>actNo}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <!-- <th></th>
+              <th></th> -->
+
+              <!-- <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th> -->
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="table-responsive" *ngIf="currentSuper == true">
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr style="background-color: rgb(101, 226, 43); ">
+              <th>#</th>
+              <th>Code</th>
+              <th>Login Name</th>
+              <th>IP Address</th>
+              <th>Date Time</th>
+              <th>Last Activity</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr >
+              <td>name</td>
+              <td>ds</td>
+              <td>das</td>
+              <td>dfgd</td>
+              <td>actNo}}</td>
+              <td>actNo}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="table-responsive" *ngIf="currentAgent == true">
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr style="background-color: rgb(101, 226, 43); ">
+              <th>#</th>
+              <th>Code</th>
+              <th>Login Name</th>
+              <th>IP Address</th>
+              <th>Date Time</th>
+              <th>Last Activity</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr >
+              <td>name</td>
+              <td>ds</td>
+              <td>das</td>
+              <td>dfgd</td>
+              <td>actNo}}</td>
+              <td>actNo}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="table-responsive" *ngIf="currentClient == true">
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr style="background-color: rgb(101, 226, 43); ">
+              <th>#</th>
+              <th>Code</th>
+              <th>Login Name</th>
+              <th>IP Address</th>
+              <th>Date Time</th>
+              <th>Last Activity</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr >
+              <td>name</td>
+              <td>ds</td>
+              <td>das</td>
+              <td>dfgd</td>
+              <td>actNo}}</td>
+              <td>actNo}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-end">
+          <div class="right">
+            <ngb-pagination
+              [collectionSize]="totalItems"
+              [(page)]="currentPage"
+              [pageSize]="itemsPerPage">
+            </ngb-pagination>
+          </div>
+
+        </div>
+        <!-- <div class="row">
+<div class="col-6"></div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

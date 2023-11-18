@@ -1,0 +1,113 @@
+<div class="row" >
+  <nav class="page-breadcrumb" style="text-align: right;">
+    <h6 class="card-title" style="text-align: left;">Reports</h6>
+
+    <!-- <ol class="breadcrumb justify-content-end">
+        <li class="breadcrumb-item"><a routerLink="/master-agent">Master-Agent</a></li>
+        <li class="breadcrumb-item active" aria-current="page">New Master</li>
+    </ol> -->
+</nav>
+  <div class="col-md-12 stretch-card">
+
+    <div class="card">
+
+      <div class="card-header" style="background-color: gray; color: white;">
+
+        <h1 class="card-title" style="font-size: 24px;">Master Coin Details</h1>
+
+        </div>
+
+      <div class="card-body">
+        <div class="row align-items-center" style="margin: 10px;">
+          <div class="col-md-6">
+            <div class="mb-3">
+            <!-- Item per page dropdown -->
+            <div class="items-per-page-dropdown">
+              <label for="itemsPerPageSelect">Show</label>
+              <select id="itemsPerPageSelect" class="form-control" style="width: 50px; display: inline-block;" [(ngModel)]="itemsPerPage" (ngModelChange)="updatePage()">
+                <option *ngFor="let option of pageSizeOptions" [ngValue]="option">{{ option }}</option>
+              </select>
+              <label for="itemsPerPageSelect">Entire</label>
+            </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <!-- Search input -->
+            <div class="mb-3">
+              <div class="input-group justify-content-end">
+                <label for="itemsPerPageSelect" style="margin: 10px;">Search:</label>
+                <input type="text" class="form-control" style="max-width: 200px;" placeholder="Search...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Super Table -->
+        <div class="table-responsive" >
+          <!-- *ngIf="currentSuper == true" -->
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr style="background-color: rgb(101, 226, 43); ">
+              <th>SNo</th>
+              <th>Master Name</th>
+              <th>Limit</th>
+              <th>Enter Limit</th>
+              <th>My Limit:1071.08</th>
+              <!-- <th>User</th>
+              <th>Date</th>
+              <th>IP</th> -->
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+              <!-- *ngFor="let data of allDataUser" -->
+              <!-- <td>{{data.id}}</td>
+              <td>{{data.name}}</td> -->
+              <td>das</td>
+              <td>das</td>
+              <td>dfgd</td>
+              <td><input class="form-control" type="number"
+                formControlName="enterLimit" ></td>
+              <td>
+                <button class="btn btn-primary" type="button" style="margin-right: 10px;">Add</button>
+                <button class="btn btn-danger" type="button">Minus</button>
+
+              </td>
+              <!-- <td>entLimit}}</td>
+              <td>e}}</td> -->
+             </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <!-- <th></th> -->
+              <!-- <th></th>
+              <th></th> -->
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-end">
+          <div class="right">
+            <ngb-pagination
+              [collectionSize]="totalItems"
+              [(page)]="currentPage"
+              [pageSize]="itemsPerPage">
+            </ngb-pagination>
+          </div>
+
+        </div>
+        <!-- <div class="row">
+<div class="col-6"></div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,312 @@
+<div class="container-fluid" style="margin: auto;">
+
+  <nav class="page-breadcrumb" style="text-align: right;">
+      <h4 class="card-title" style="text-align: left;">Add Client Panel</h4>
+      <ol class="breadcrumb justify-content-end">
+          <li class="breadcrumb-item"><a routerLink="/client-panel">Client </a></li>
+          <li class="breadcrumb-item active" aria-current="page">New Client Panel</li>
+      </ol>
+  </nav>
+
+  <form class="forms-sample" [formGroup]="clientAddForm" (ngSubmit)="onSubmit()">
+      <div class="card card-primary">
+          <div class="card-header">
+
+          </div>
+          <div class="card-body">
+              <div class="row">
+                  <div class="col-md-6 grid-margin ">
+                      <div class="card">
+                          <div class="card-header bg-primary">
+                              <h2 class="card-title text-white">Basic Info</h2>
+                          </div>
+
+                          <div class="card-body">
+                              <!-- <div class="mb-3">
+                                  <label class="form-label" style="font-weight: bold;">Provider Panel Code</label>
+                                  <input type="text" disabled class="form-control" autocomplete="off"
+                                     [value]="providerData?.code + providerData?._id" laceholder="Auto Generated">
+                              </div> -->
+                              <div class="mb-3">
+                                <label class="form-label" style="font-weight: bold;">Code</label>
+                                <input type="text" disabled class="form-control" autocomplete="off"
+                                       placeholder="Auto Generated">
+                            </div>
+
+                              <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">Name *</label>
+                                  <input type="text" class="form-control"
+                                         [ngClass]="clientAddForm.get('name').touched && clientAddForm.get('name').hasError('required') ? 'is-invalid' : ''"
+                                         formControlName="name" autocomplete="off"
+                                         placeholder="Name" required />
+
+                                  <div *ngIf="clientAddForm.get('name').hasError('required') && (clientAddForm.get('name').touched || submitted)"
+                                       style="color:red">
+                                      Name is required.
+                                  </div>
+                                  <div
+                                          *ngIf="clientAddForm.get('name')?.hasError('minlength') && clientAddForm.get('name')?.touched"
+                                          style="color:red">
+                                      Name must be at least 3 characters.
+                                  </div>
+                                  <div
+                                          *ngIf="clientAddForm.get('name')?.hasError('maxlength') && clientAddForm.get('name')?.touched"
+                                          style="color:red">
+                                      Name cannot exceed 30 characters.
+                                  </div>
+                                  <div *ngIf="clientAddForm.get('name')?.hasError('pattern') && clientAddForm.get('name')?.touched"
+                                       style="color:red">
+                                      Invalid pattern for Name.
+                                  </div>
+                              </div>
+
+                              <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">Reference*</label>
+                                  <input type="text" class="form-control"
+                                  [ngClass]="clientAddForm.get('reference').touched && clientAddForm.get('reference').hasError('required') ? 'is-invalid' : ''"
+                                  formControlName="reference" autocomplete="off" placeholder="Reference" required />
+
+                           <div *ngIf="clientAddForm.get('reference').hasError('required') && (clientAddForm.get('reference').touched || submitted)"
+                                style="color: red">
+                             Reference is required.
+                           </div>
+
+                           <div
+                           *ngIf="clientAddForm.get('reference')?.hasError('minlength') && clientAddForm.get('reference')?.touched"
+                           style="color:red">
+                           Reference must be at least 3 characters.
+                   </div>
+                                  <div
+                                          *ngIf="clientAddForm.get('reference')?.hasError('pattern') && clientAddForm.get('reference')?.touched"
+                                          style="color:red">
+                                      Invalid pattern for Reference.
+                                  </div>
+                              </div>
+                              <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">Password *</label>
+                                  <div class="input-group mb-3">
+                                    <input type="text" class="form-control"
+                                    [ngClass]="clientAddForm.get('reference').touched && clientAddForm.get('password').hasError('required') ? 'is-invalid' : ''"
+                                    formControlName="password" autocomplete="off" placeholder="Password" required readonly />
+                                      <button class="input-group-text btn-primary" id="basic-addon2"
+                                              type="button"
+                                              style="background-color:#17a2b8 ;color: whitesmoke;" (click)="generatePassword()">Generate Password
+                                      </button>
+                                  </div>
+                                  <!-- <div
+                                          *ngIf="clientAddForm.get('password')?.hasError('required') && clientAddForm.get('password')?.touched && submitted"
+                                          style="color:red">
+                                      Password is required.
+                                  </div> -->
+                                  <div *ngIf="clientAddForm.get('password').hasError('required') && (clientAddForm.get('password').touched || submitted)"
+                                  style="color: red">
+                                  Password is required.
+                             </div>
+                                  <!-- <div
+                                          *ngIf="clientAddForm.get('password')?.hasError('minlength') && clientAddForm.get('password')?.touched && submitted"
+                                          style="color: red;">
+                                      Password must be at least 6 characters.
+                                  </div> -->
+                                  <div
+                                  *ngIf="clientAddForm.get('password')?.hasError('minlength') && clientAddForm.get('password')?.touched"
+                                  style="color:red">
+                                  Password must be at least 6 characters..
+                          </div>
+
+                                  <div
+                                  *ngIf="clientAddForm.get('password')?.hasError('maxlength') && clientAddForm.get('password')?.touched"
+                                  style="color:red">
+                                  Password cannot exceed 60 characters.
+                          </div>
+
+                              </div>
+                              <div class="mb-3">
+                                  <label style="font-weight: bold;" class="form-label">Contact No</label>
+                                  <input type="text" class="form-control"
+                                  [ngClass]="clientAddForm.get('contactNo').touched && clientAddForm.get('contactNo').hasError('required') ? 'is-invalid' : ''"
+                                  formControlName="contactNo" autocomplete="off" placeholder="contactNo" required />
+
+                                  <!-- <input type="text" class="form-control" formControlName="contactNo"
+                                         autocomplete="off"
+                                         placeholder="Contact No"> -->
+
+                                  <div *ngIf="clientAddForm.get('contactNo').hasError('required') && (clientAddForm.get('password').touched || submitted)"
+                                  style="color: red">
+                                  Contact number is required.
+                             </div>
+                             <div
+                             *ngIf="clientAddForm.get('contactNo')?.hasError('maxlength') && clientAddForm.get('contactNo')?.touched"
+                             style="color:red">
+                             Contact number cannot exceed 11 digits.
+                     </div>
+
+                                  <div
+                                          *ngIf="clientAddForm.get('contactNo')?.hasError('pattern') && clientAddForm.get('contactNo')?.touched"
+                                          style="color: red;">
+                                      Only numbers are allowed for the contact number.
+                                  </div>
+                              </div>
+
+
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-md-6 grid-margin stretch-card">
+                      <div class="card">
+                          <!-- </div> -->
+                          <div class="card-header text-white bg-danger">
+                              <h6 class="card-title ">Share and Commission</h6>
+                          </div>
+                          <div class="card-body">
+                              <!-- <div class="col-md -12 head" style="background-color: blue;">
+
+                              </div> -->
+
+
+                              <div class="row">
+                                  <div class="col-sm-6">
+                                      <div class="mb-3">
+
+                                          <label style="font-weight: bold;" class="form-label">Client Share</label>
+                                          <!-- <input type="number" class="form-control" formControlName="share"
+                                                 autocomplete="off"
+                                                 placeholder="Share"> -->
+                                                 <input type="number" class="form-control"
+                                                 [ngClass]="clientAddForm.get('share').touched  && clientAddForm.get('share').hasError('required') ? 'is-invalid' : ''"
+                                                 formControlName="share" autocomplete="off" placeholder="Share " required />
+
+                                          <div
+                                                  *ngIf="clientAddForm.get('share').hasError('required') && (clientAddForm.get('share')?.touched||submitted)"
+                                                  style="color:red">
+                                              Share must be greater than or equal to 0.
+                                          </div>
+                                          <div
+                                                  *ngIf="clientAddForm.get('share')?.hasError('min') && clientAddForm.get('share')?.touched"
+                                                  style="color:red">
+                                              Share must be greater than or equal to 0.
+                                          </div>
+                                          <div
+                                                  *ngIf="clientAddForm.get('share')?.hasError('max') && clientAddForm.get('share')?.touched"
+                                                  style="color:red">
+                                              Share must be less than or equal to {{providerData?.share}}.
+                                          </div>
+                                          <div *ngIf="serverErrors?.share && serverErrors != null" class="server-error" style="color: red;">
+                                            {{ serverErrors?.share }}
+                                          </div>
+
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <label style="font-weight: bold;" class="form-label">{{providerData?.code}}{{providerData?.id}} Share</label>
+                                      <input type="number" class="form-control" disabled autocomplete="off"
+                                      [value]="providerData?.share" placeholder="0.0">
+
+                                  </div>
+                              </div>
+
+                              <!-- <div class="row mb-3">
+                                <div class="col-sm-6">
+                                    <label style="font-weight: bold;" class="form-label">Share Master</label>
+
+                                           <input type="number" class="form-control"
+                                           [ngClass]="clientAddForm.get('shareMaster').touched && clientAddForm.get('shareMaster').hasError('required') ? 'is-invalid' : ''"
+                                           formControlName="shareMaster" autocomplete="off" placeholder="Casino Commission" required />
+
+                                    <div *ngIf="clientAddForm.get('shareMaster').hasError('required') && (clientAddForm.get('shareMaster').touched ||submitted)"
+                                         style="color: red;">
+                                         Share greater than 0 or equal 0.
+                                    </div>
+                                    <div *ngIf="clientAddForm.get('shareMaster')?.hasError('max') && clientAddForm.get('shareMaster')?.touched" style="color: red;">
+                                      share less than 100 or equal 100.
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label style="font-weight: bold;" class="form-label">{{providerData?.code}}{{providerData?.id}} Share Master</label>
+                                    <input type="text" class="form-control" disabled autocomplete="off" readonly
+                                           value="2">
+
+                                </div>
+
+                            </div> -->
+                            <!-- <div class="row mb-3">
+                              <div class="col-sm-6">
+                                  <label style="font-weight: bold;" class="form-label">Casino Share Master</label>
+
+                                         <input type="number" class="form-control"
+                                         [ngClass]="clientAddForm.get('cShareMaster').touched && clientAddForm.get('cShareMaster').hasError('required') ? 'is-invalid' : ''"
+                                         formControlName="cShareMaster" autocomplete="off" placeholder="Casino Commission" required />
+
+                                  <div *ngIf="clientAddForm.get('cShareMaster').hasError('required') && (clientAddForm.get('cShareMaster').touched ||submitted)"
+                                       style="color: red;">
+                                       "Casino share greater than 0 or equal 0.
+                                  </div>
+                                  <div *ngIf="clientAddForm.get('cShareMaster')?.hasError('max') && clientAddForm.get('cShareMaster')?.touched" style="color: red;">
+                                    "Casino share greater than 100 or equal 100.
+                                  </div>
+                              </div>
+
+                              <div class="col-sm-6">
+                                  <label style="font-weight: bold;" class="form-label">{{providerData?.code}}{{providerData?.id}} Casino Share Master</label>
+                                  <input type="text" class="form-control" disabled autocomplete="off" readonly
+                                         value="2">
+                              </div>
+                          </div> -->
+                          <!-- <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <label style="font-weight: bold;" class="form-label">Mobile Share Master</label>
+                                       <input type="number" class="form-control"
+                                       [ngClass]="clientAddForm.get('msMaster').touched && clientAddForm.get('msMaster').hasError('required') ? 'is-invalid' : ''"
+                                       formControlName="msMaster" autocomplete="off" placeholder="Casino Commission" required />
+
+                                <div *ngIf="clientAddForm.get('msMaster').hasError('required') && (clientAddForm.get('msMaster').touched ||submitted)"
+                                     style="color: red;">
+                                     Mobile share greater than 0 or equal 0
+                                </div>
+                                <div *ngIf="clientAddForm.get('msMaster')?.hasError('max') && clientAddForm.get('msMaster')?.touched" style="color: red;">
+                                  Mobile share greater than 100 or equal 100
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label style="font-weight: bold;" class="form-label">{{providerData?.code}}{{providerData?.id}} Mobile Share Master</label>
+                                <input type="text" class="form-control" disabled autocomplete="off" readonly
+                                       value="2">
+                            </div>
+                        </div> -->
+                        <!-- <div class="mb-3">
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input" formControlName="casinoCheck" />
+                            <label class="form-check-label">Casino Check</label>
+                          </div>
+                        </div> -->
+                        <!-- <div class="mb-3">
+                          <div class="form-check">
+                            <input type="checkbox" class="form-check-input" formControlName="shareStatus" />
+                            <label class="form-check-label">Share Status</label>
+                          </div>
+                        </div> -->
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+              <a routerLink="/client" class="btn btn-primary me-2">Cancel</a>
+              <button type="submit" *ngIf="isClientLoading==false" class="btn btn-primary me-2">Create New Client</button>
+              <!-- <span *ngIf="!submitted">Submit</span> -->
+              <!-- <span *ngIf="submitted"> -->
+                    <!-- this.= false -->
+                    <div class="spinner-border" role="status" *ngIf="isClientLoading==true">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <!-- </span> -->
+          </div>
+      </div>
+  </form>
+
+
+</div>
+

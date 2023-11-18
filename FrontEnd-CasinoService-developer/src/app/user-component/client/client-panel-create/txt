@@ -1,0 +1,143 @@
+ <div class="row">
+                                  <div class="col-sm-6">
+                                      <div class="mb-3">
+                                          <label style="font-weight: bold;" class="form-label">Client Casino Share</label>
+
+                                                 <input type="number" class="form-control"
+                                                 [ngClass]="clientAddForm.get('cShare').touched && clientAddForm.get('cShare').hasError('required') ? 'is-invalid' : ''"
+                                                 formControlName="cShare" autocomplete="off" placeholder="Casino Share " required />
+                                          <div
+                                                  *ngIf="clientAddForm.get('cShare').hasError('required') && (clientAddForm.get('cShare').touched ||submitted)"
+                                                  style="color:red">
+                                              Casino share must be greater than or equal to 0.
+                                          </div>
+                                          <div
+                                                  *ngIf="clientAddForm.get('cShare')?.hasError('max') && clientAddForm.get('cShare')?.touched"
+                                                  style="color:red">
+                                              Casino share must be less than or equal to {{providerData?.cshare}}.
+                                          </div>
+
+                                          <div *ngIf="clientAddForm.get('cShare').hasError('serverError')" class="invalid-feedback">
+                                            {{ clientAddForm.get('cShare').getError('serverError') }}
+                                          </div>
+                                      </div>
+                                      <div *ngIf="serverErrors?.cShare && serverErrors != null" class="server-error" style="color: red;">
+                                        {{ serverErrors?.cShare }}
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <label style="font-weight: bold;" class="form-label"> {{providerData?.code}}{{providerData?.id}} Casino Share</label>
+                                      <input type="number" class="form-control" disabled autocomplete="off"
+                                             placeholder="0.0" [value]="providerData?.cshare">
+
+                                  </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                  <div class="col-sm-6">
+                                      <label style="font-weight: bold;" class="form-label">Client Mobile Share</label>
+                                      <!-- <input type="text" class="form-control" formControlName="mobileShare"
+                                             autocomplete="off"
+                                             placeholder="Mobile Share"> -->
+                                             <input type="number" class="form-control"
+                                                 [ngClass]="clientAddForm.get('mobileShare').touched && clientAddForm.get('mobileShare').hasError('required') ? 'is-invalid' : ''"
+                                                 formControlName="mobileShare" autocomplete="off" placeholder="International Casino Share " required />
+                                      <div
+                                              *ngIf="clientAddForm.get('mobileShare').hasError('required') && (clientAddForm.get('mobileShare').touched||submitted)"
+                                              style="color: red;">
+                                          Mobile share must be greater than or equal to 0.
+                                      </div>
+                                      <div
+                                              *ngIf="clientAddForm.get('mobileShare')?.hasError('max') && clientAddForm.get('mobileShare')?.touched"
+                                              style="color: red;">
+                                          Mobile share must be less than or equal to {{providerData?.mobileShare}}.
+                                      </div>
+                                      <div *ngIf="serverErrors?.mobileShare && serverErrors != null" class="server-error" style="color: red;">
+                                        {{ serverErrors?.mobileShare }}
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <label style="font-weight: bold;" class="form-label">{{providerData?.code}}{{providerData?.id}} Mobile Share</label>
+                                      <input type="text" class="form-control" disabled autocomplete="off"
+                                             placeholder="0.0" [value]="providerData?.mobileShare">
+
+                                  </div>
+                              </div>
+                              <div class="row mb-3">
+                                  <div class="col-sm-6">
+                                      <label style="font-weight: bold;" class="form-label"> Match Commission</label>
+                                      <!-- <input type="text" class="form-control" formControlName="mc" autocomplete="off"
+                                             placeholder="Mathc Commission"> -->
+                                             <input type="number" class="form-control"
+                                             [ngClass]="clientAddForm.get('mc').touched && clientAddForm.get('mc').hasError('required') ? 'is-invalid' : ''"
+                                             formControlName="mc" autocomplete="off" placeholder="Match Commission" required />
+
+                                      <div *ngIf="clientAddForm.get('mc').hasError('required') && (clientAddForm.get('mc').touched|| submitted)"
+                                           style="color: red;">
+                                          Match Commission must be greater than or equal to 0.
+                                      </div>
+                                      <div *ngIf="clientAddForm.get('mc')?.hasError('max') && clientAddForm.get('mc')?.touched"
+                                           style="color: red;">
+                                          Match Commission must be less than or equal to {{providerData?.mc}}.
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <label style="font-weight: bold;" class="form-label">{{providerData?.code}}{{providerData?.id}} Match Commission</label>
+                                      <input type="text" class="form-control" disabled autocomplete="off"
+                                             placeholder="2.0" [value]="providerData?.mc">
+
+                                  </div>
+                              </div>
+                              <div class="row mb-3">
+                                  <div class="col-sm-6">
+                                      <label style="font-weight: bold;" class="form-label">Session Commission</label>
+                                      <!-- <input type="text" class="form-control" formControlName="sc" autocomplete="off"
+                                             placeholder="Session Commission"> -->
+                                             <input type="number" class="form-control"
+                                             [ngClass]="clientAddForm.get('sc').touched && clientAddForm.get('sc').hasError('required') ? 'is-invalid' : ''"
+                                             formControlName="sc" autocomplete="off" placeholder="Session Commission" required />
+
+                                      <div *ngIf="clientAddForm.get('sc').hasError('required') && (clientAddForm.get('sc').touched ||submitted)"
+                                           style="color: red;">
+                                          Session Commission must be greater than or equal to 0.
+                                      </div>
+                                      <div *ngIf="clientAddForm.get('sc')?.hasError('max') && clientAddForm.get('sc')?.touched"
+                                           style="color: red;">
+                                          Session Commission must be less than or equal to {{providerData?.sc}}.
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <label style="font-weight: bold;" class="form-label">{{providerData?.code}}{{providerData?.id}} Session
+                                          Commission</label>
+                                      <input type="text" class="form-control" [value]="providerData?.sc" disabled readonly value="3">
+
+                                  </div>
+                              </div>
+                              <div class="row mb-3">
+                                  <div class="col-sm-6">
+                                      <label style="font-weight: bold;" class="form-label">Casino Commission</label>
+                                      <!-- <input type="text" class="form-control" formControlName="cc"
+                                             placeholder="Casino Commission"
+                                             autocomplete="off"> -->
+                                             <input type="number" class="form-control"
+                                             [ngClass]="clientAddForm.get('cc').touched && clientAddForm.get('cc').hasError('required') ? 'is-invalid' : ''"
+                                             formControlName="cc" autocomplete="off" placeholder="Casino Commission" required />
+
+                                      <div *ngIf="clientAddForm.get('cc').hasError('required') && (clientAddForm.get('cc').touched ||submitted)"
+                                           style="color: red;">
+                                          Casino Commission must be greater than or equal to 0.
+                                      </div>
+                                      <div *ngIf="clientAddForm.get('cc')?.hasError('max') && clientAddForm.get('cc')?.touched" style="color: red;">
+                                          Casino Commission must be less than or equal to {{providerData?.cc}}.
+                                      </div>
+                                  </div>
+
+                                  <div class="col-sm-6">
+                                      <label style="font-weight: bold;" class="form-label">{{providerData?.code}}{{providerData?.id}} Casino
+                                          Commission</label>
+                                      <input type="text" class="form-control" disabled autocomplete="off" readonly
+                                             value="2" [value]="providerData?.cc">
+
+                                  </div>
+
+                              </div>

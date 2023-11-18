@@ -1,0 +1,109 @@
+  <nav class="page-breadcrumb" style="text-align: right;">
+    <h4 class="card-title" style="text-align: left;">Ledger</h4>
+
+    <ol class="breadcrumb justify-content-end">
+        <li class="breadcrumb-item"><a routerLink="/agent">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">My Ledger</li>
+    </ol>
+</nav>
+<div class="row">
+  <div class="col-md-12 stretch-card">
+    <div class="card">
+      <div class="d-flex justify-content-center align-items-center" style="height: 100vh;" *ngIf="isBodyLoading == true">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <div class="card-header" *ngIf="isBodyLoading == false">
+
+        <h1 class="card-title">My Ledger </h1>
+      </div>
+      <div class="card-body" *ngIf="isBodyLoading == false">
+        <div class="table-responsive">
+          <!-- id="dataTableExample" -->
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr>
+              <th>#</th>
+              <th>Date</th>
+              <th>Collection Name</th>
+              <th>Debit</th>
+              <th>Credit</th>
+              <th>Balance</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3" style="color: blueviolet;font-size: large; text-align: center;">Total Amount</td>
+                <td style="font-size: 20px; font-weight: bold;">{{totalDebit}}</td>
+                <td style="font-size: 20px; font-weight: bold;">{{totalCredit}}	</td>
+                <td style="font-size: 20px; font-weight: bold;">{{totalBalance}}</td>
+<td></td>
+<td></td>
+
+              </tr>
+
+              <tr *ngFor="let row of data;let i= index">
+              <td>
+                <!-- <div class="dropdown">
+                  <div ngbDropdown> -->
+                    {{(i+1)}}
+                    <!-- </div></div> -->
+                <!-- {{(i+1) + (row.agent.number *25)}}
+                <div class="dropdown">
+                  <button class="btn btn-link btn-sm" id="dropdownButtonLg" ngbDropdownToggle></button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownButtonLg">
+                    <button ngbDropdownItem *ngFor="let id of superId" (click)="getSingleId(id)">Edit {{ id }}</button> -->
+                    <!-- Add more buttons as needed -->
+                  <!-- </div> -->
+                <!-- </div> -->
+                    <!-- <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button ngbDropdownItem (click)="getSingleId(row.agent.id)"></button>
+                      <button ngbDropdownItem (click)="getSuperLimit(row.agent.id)">Super Agent Limit</button>
+                      <button ngbDropdownItem>Something else is here</button>
+                    </div> -->
+                  <!-- </div>
+                </div> -->
+
+              </td>
+              <td>{{row.Date}}</td>
+              <td>{{row.CollectionName}}</td>
+              <td>{{row.Debit}}</td>
+              <td>{{row.Credit}}</td>
+              <td>{{row.Balance}}</td>
+              <td>{{row.Type}}</td>
+              <td>{{row.Description}}</td>
+             </tr>
+
+            </tbody>
+
+            <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+
+      </div>
+      <div class="card-footer" *ngIf="isBodyLoading == false">
+        <div class="right">
+          <!-- <ngb-pagination [collectionSize]="data?.data?.totalElements" [pageSize]="data?.data?.size"
+                          [page]="(data?.data?.number+1)" [maxSize]="data?.data?.totalPages" [rotate]="true"
+                          (pageChange)="loadAgentData($event)" [boundaryLinks]="false"></ngb-pagination> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <app-toasts [toasts]="toastService.toasts"></app-toasts> -->

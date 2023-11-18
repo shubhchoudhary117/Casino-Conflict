@@ -1,0 +1,131 @@
+<div class="row">
+  <nav class="page-breadcrumb" style="text-align: right;">
+    <h6 class="card-title" style="text-align: left;">Provider Limit</h6>
+
+    <!-- <ol class="breadcrumb justify-content-end">
+        <li class="breadcrumb-item"><a routerLink="/master-agent">Master-Agent</a></li>
+        <li class="breadcrumb-item active" aria-current="page">New Master</li>
+    </ol> -->
+  </nav>
+  <div class="col-md-12 stretch-card">
+
+    <div class="card">
+      <div class="d-flex justify-content-center align-items-center" style="height: 100vh;" *ngIf="isBodyLoading == true">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <div class="card-header" style="background-color: gray; color: white;" *ngIf="isBodyLoading == false">
+
+        <h1 class="card-title" style="font-size: 24px;">Provider Panel Coin Details</h1>
+
+      </div>
+
+      <div class="card-body" *ngIf="isBodyLoading == false">
+        <div class="row align-items-center" style="margin: 10px;">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <!-- Item per page dropdown -->
+              <div class="items-per-page-dropdown">
+                <label for="itemsPerPageSelect">Show</label>
+                <select id="itemsPerPageSelect" class="form-control" style="width: 50px; display: inline-block;"
+                        [(ngModel)]="itemsPerPage" (ngModelChange)="updatePage(itemsPerPage)">
+                  <option *ngFor="let option of pageSizeOptions" [ngValue]="option">{{ option }}</option>
+                </select>
+                <label for="itemsPerPageSelect">Entire</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <!-- Search input -->
+            <div class="mb-3">
+              <div class="input-group justify-content-end">
+                <label for="itemsPerPageSelect" style="margin: 10px;">Search:</label>
+                <input type="text" class="form-control" style="max-width: 200px;" placeholder="Search...">
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Super Table -->
+        <div class="table-responsive">
+          <!-- *ngIf="currentSuper == true" -->
+          <table class="table table-bordered table-hover ">
+            <thead>
+            <tr style="background-color: rgb(101, 226, 43); ">
+              <th>SNo</th>
+              <th>Master Name</th>
+              <th>Limit</th>
+              <th>Enter Limit</th>
+              <th>My Limit:1071.08</th>
+              <!-- <th>User</th>
+              <th>Date</th>
+              <th>IP</th> -->
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let limit of providerLimit">
+              <!-- *ngFor="let data of allDataUser" -->
+              <!-- <td>{{data.id}}</td>
+              <td>{{data.name}}</td> -->
+              <td>{{limit.id}}</td>
+              <td>{{limit.code + ' '}} {{limit.name}}</td>
+              <td>{{limit.currentLimit}}</td>
+              <td>
+                <!-- <input class="form-control" [(ngModel)]="inputNumbers[limit.id]"type="number" required/>
+                <div  *ngIf="inputErrors[limit.id]"> Please fill out this field.</div>
+                </td> -->
+                <div class="input-group">
+                  <input class="form-control" [(ngModel)]="inputNumbers[limit.id]" type="number" required/>
+                </div>
+                <div *ngIf="inputErrors[limit.id]" style="color:red"> Please fill out this field.</div>
+              </td>
+
+              <td>
+                <button class="btn btn-primary" type="submit" style="margin-right: 10px;"
+                        (click)="updateLimit(limit.id,1)">Add
+                </button>
+                <button class="btn btn-danger" type="button" (click)="updateLimit(limit.id,-1)">Minus</button>
+
+              </td>
+
+            </tr>
+            </tbody>
+            <!-- <tr> -->
+            <!-- <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+
+            </tr>
+            </tfoot> -->
+          </table>
+          <div class="spinner-border col-md-12 col-sm-12" role="status" *ngIf="isLoading==true" style="text-align: center;">
+            <span class="visually-hidden" >Loading...</span>
+          </div>
+          <div class="col-md-12 col-sm-12" style="text-align: center; font-size: large;font-weight: bold;" *ngIf="providerLimit ==''||providerLimit ==undefined">No Data Available in Table</div>
+
+        </div>
+
+      </div>
+      <div class="card-footer" *ngIf="isBodyLoading == false">
+        <div class="d-flex justify-content-end">
+          <div class="right">
+            <ngb-pagination
+              [collectionSize]="providerPaginable.data.totalElements"
+              [page]="(providerPaginable.data.number+1)"
+              [maxSize]="providerPaginable.data.totalPages"
+              [pageSize]="providerPaginable.data.size"
+            >
+            </ngb-pagination>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<app-toasts [toasts]="toastService.toasts"></app-toasts>
